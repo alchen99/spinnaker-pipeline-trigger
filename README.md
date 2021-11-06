@@ -81,6 +81,7 @@ Sample message format based on the default parameters being sent:
     "commit": "{{ commit }}",
     "ref": "{{ ref }}",
     "githubEventName": "{{ githubEventName }}",
+    "githubEventPath": "{{ githubEventPath }}",
     "githubActor": "{{ githubActor }}",
     "githubAction": "{{ githubAction }}"
   }

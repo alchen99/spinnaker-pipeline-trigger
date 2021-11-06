@@ -2,19 +2,19 @@
 
 Trigger Spinnaker pipelines from Actions
 
-![Build](https://github.com/ExpediaGroup/spinnaker-pipeline-trigger/workflows/Publish/badge.svg)
-![Release](https://github.com/ExpediaGroup/spinnaker-pipeline-trigger/workflows/Release/badge.svg)
+![Build](https://github.com/alchen99/spinnaker-pipeline-trigger/workflows/Publish/badge.svg)
+![Release](https://github.com/alchen99/spinnaker-pipeline-trigger/workflows/Release/badge.svg)
 
 ## Usage
 
-Include `ExpediaGroup/spinnaker-pipeline-trigger` as final step in workflow to trigger Spinnaker.
+Include `alchen99/spinnaker-pipeline-trigger` as final step in workflow to trigger Spinnaker.
 
 ### Basic
 
 ```yaml
 steps:
   - name: Spinnaker
-    uses: ExpediaGroup/spinnaker-pipeline-trigger@v1
+    uses: alchen99/spinnaker-pipeline-trigger@v1
     with:
       topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
 ```
@@ -44,7 +44,7 @@ To pass additional parameters to the pipeline execution context, include the `pa
 ```yaml
 steps:
   - name: Spinnaker
-    uses: ExpediaGroup/spinnaker-pipeline-trigger@v1
+    uses: alchen99/spinnaker-pipeline-trigger@v1
     with:
       topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
       parameters: |
@@ -89,7 +89,7 @@ Sample message format based on the default parameters being sent:
 
 ## License
 
-The scripts and documentation in this project are released under the [Apache 2 License](https://github.com/ExpediaGroup/spinnaker-pipeline-trigger/blob/main/LICENSE).
+The scripts and documentation in this project are released under the [Apache 2 License](https://github.com/alchen99/spinnaker-pipeline-trigger/blob/main/LICENSE).
 
 ## Contributions
 

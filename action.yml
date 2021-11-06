@@ -1,6 +1,6 @@
 name: "spinnaker-pipeline-trigger"
 description: "Triggers Spinnaker pipelines using AWS SNS"
-author: "ExpediaGroup"
+author: "alchen@apache.org"
 inputs:
   topic_arn:
     description: Topic ARN

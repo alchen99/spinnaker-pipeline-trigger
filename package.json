@@ -27,7 +27,7 @@
         "node",
         "setup"
     ],
-    "author": "Expedia Group <oss@expediagroup.com>",
+    "author": "Alice Chen <alchen@apache.org>",
     "license": "MIT",
     "dependencies": {
         "@actions/core": "1.4.0",

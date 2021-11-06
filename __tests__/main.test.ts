@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+import * as github from '@actions/github'
+import { context } from '@actions/github'
 import { SNSClient, PublishCommand } from '@aws-sdk/client-sns'
 import { run } from '../src/main'
 
@@ -21,6 +23,7 @@ import { run } from '../src/main'
 const cleanEnv = process.env
 
 jest.mock('@aws-sdk/client-sns')
+jest.mock('@actions/github')
 const mockedSend = jest.fn().mockReturnValue({ MessageId: '1' })
 
 describe('Publish', () => {
@@ -33,6 +36,12 @@ describe('Publish', () => {
     process.env.GITHUB_SHA = 'long-sha'
     process.env.GITHUB_REF = 'main'
     SNSClient.prototype.send = mockedSend
+
+    // @ts-ignore
+    github.context = {
+      ref: 'refs/heads/testRef',
+      payload: {}
+    }
   })
 
   test('Run with no options', async () => {
@@ -41,7 +50,7 @@ describe('Publish', () => {
 
     const input = {
       Message:
-        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubEventPath":"","githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
+        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubEventPath":"","githubPayload":"{}","githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
       TopicArn: 'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
     }
 
@@ -61,7 +70,7 @@ describe('Publish', () => {
 
     const input = {
       Message:
-        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"","githubEventName":"","githubEventPath":"","githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
+        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"","githubEventName":"","githubEventPath":"","githubPayload":"{}","githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
       TopicArn: 'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
     }
 
@@ -81,7 +90,7 @@ describe('Publish', () => {
 
     const input = {
       Message:
-        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubEventPath":"","githubActor":"","githubAction":"","parameters":{"parameter1":"value1","parameter2":"value2"},"messageAttributes":"12345"}',
+        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubEventPath":"","githubPayload":"{}","githubActor":"","githubAction":"","parameters":{"parameter1":"value1","parameter2":"value2"},"messageAttributes":"12345"}',
       TopicArn: 'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
     }
 

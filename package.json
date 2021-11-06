@@ -20,7 +20,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ExpediaGroup/spinnaker-pipeline-trigger.git"
+        "url": "git+https://github.com/alchen99/spinnaker-pipeline-trigger.git"
     },
     "keywords": [
         "actions",

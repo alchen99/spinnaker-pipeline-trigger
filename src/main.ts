@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import * as core from '@actions/core'
+import * as github from '@actions/github'
 import * as yaml from 'js-yaml'
 import {
   SNSClient,
@@ -51,6 +52,8 @@ function constructMessage(): object {
   const githubAction = process.env.GITHUB_ACTION || ''
   const githubEventName = process.env.GITHUB_EVENT_NAME || ''
   const githubEventPath = process.env.GITHUB_EVENT_PATH || ''
+  const githubPayload =
+    JSON.stringify(github.context.payload, undefined, 2) || {}
   const githubActor = process.env.GITHUB_ACTOR || ''
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
@@ -61,6 +64,7 @@ function constructMessage(): object {
     ref,
     githubEventName,
     githubEventPath,
+    githubPayload,
     githubActor,
     githubAction,
     parameters,

@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 import * as github from '@actions/github'
+import { context } from '@actions/github'
 import { SNSClient, PublishCommand } from '@aws-sdk/client-sns'
 import { run } from '../src/main'
 
@@ -22,21 +23,12 @@ import { run } from '../src/main'
 const cleanEnv = process.env
 
 jest.mock('@aws-sdk/client-sns')
+jest.mock('@actions/github')
 const mockedSend = jest.fn().mockReturnValue({ MessageId: '1' })
 
 describe('Publish', () => {
   beforeEach(() => {
     jest.resetModules()
-    // Mock github context
-    jest.spyOn(github.context, 'repo', 'get').mockImplementation(() => {
-      return {
-        owner: 'some-owner',
-        repo: 'some-repo'
-      }
-    })
-    github.context.ref = 'refs/heads/some-ref'
-    github.context.sha = '1234567890123456789012345678901234567890'
-
     process.env = {}
     process.env.INPUT_TOPIC_ARN =
       'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
@@ -44,6 +36,12 @@ describe('Publish', () => {
     process.env.GITHUB_SHA = 'long-sha'
     process.env.GITHUB_REF = 'main'
     SNSClient.prototype.send = mockedSend
+
+    // @ts-ignore
+    github.context = {
+      ref: 'refs/heads/testRef',
+      payload: {}
+    }
   })
 
   test('Run with no options', async () => {

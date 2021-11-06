@@ -50,7 +50,7 @@ describe('Publish', () => {
 
     const input = {
       Message:
-        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubEventPath":"","githubPayload":"{}","githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
+        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubEventPath":"","githubPayload":{},"githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
       TopicArn: 'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
     }
 
@@ -70,7 +70,7 @@ describe('Publish', () => {
 
     const input = {
       Message:
-        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"","githubEventName":"","githubEventPath":"","githubPayload":"{}","githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
+        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"","githubEventName":"","githubEventPath":"","githubPayload":{},"githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
       TopicArn: 'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
     }
 
@@ -90,7 +90,7 @@ describe('Publish', () => {
 
     const input = {
       Message:
-        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubEventPath":"","githubPayload":"{}","githubActor":"","githubAction":"","parameters":{"parameter1":"value1","parameter2":"value2"},"messageAttributes":"12345"}',
+        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubEventPath":"","githubPayload":{},"githubActor":"","githubAction":"","parameters":{"parameter1":"value1","parameter2":"value2"},"messageAttributes":"12345"}',
       TopicArn: 'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
     }
 

@@ -52,8 +52,7 @@ function constructMessage(): object {
   const githubAction = process.env.GITHUB_ACTION || ''
   const githubEventName = process.env.GITHUB_EVENT_NAME || ''
   const githubEventPath = process.env.GITHUB_EVENT_PATH || ''
-  const githubPayload =
-    JSON.stringify(github.context.payload, undefined, 2) || {}
+  const githubPayload = github.context.payload || {}
   const githubActor = process.env.GITHUB_ACTOR || ''
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}

@@ -50,6 +50,7 @@ function constructMessage(): object {
   const ref = process.env.GITHUB_REF || ''
   const githubAction = process.env.GITHUB_ACTION || ''
   const githubEventName = process.env.GITHUB_EVENT_NAME || ''
+  const githubEventPath = process.env.GITHUB_EVENT_PATH || ''
   const githubActor = process.env.GITHUB_ACTOR || ''
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
@@ -59,6 +60,7 @@ function constructMessage(): object {
     commit,
     ref,
     githubEventName,
+    githubEventPath,
     githubActor,
     githubAction,
     parameters,

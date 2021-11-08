@@ -38,10 +38,7 @@ describe('Publish', () => {
     SNSClient.prototype.send = mockedSend
 
     // @ts-ignore
-    github.context = {
-      ref: 'refs/heads/testRef',
-      payload: {}
-    }
+    github.context = {}
   })
 
   test('Run with no options', async () => {

@@ -13,7 +13,7 @@ jobs:
         with:
           format: 'json'
       - run: |
-          jq -r '.' <<<'${{ steps.files.outputs.removed }}'
+          echo '${{ steps.files.outputs.removed }}'
       - uses: actions/setup-node@v2
         with:
           node-version: "12"

@@ -12,8 +12,6 @@ jobs:
         uses: jitterbit/get-changed-files@v1
         with:
           format: 'json'
-      - run: |
-          echo '${{ steps.files.outputs.added_modified }}'
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
@@ -22,5 +20,4 @@ jobs:
           yarn
       - run: |
           export GH_ADD_MODIFIED='${{ steps.files.outputs.added_modified }}'
-          env
           yarn all

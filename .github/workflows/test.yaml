@@ -24,7 +24,8 @@ jobs:
           else
             git_added_modified="'"$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -c 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')"'"
           fi
-          echo "::set-output name=git_added_modified::"$(sed -e 's/%/%25/g' -e 's/,/%2C/g' -e 's/:/%3A/g' -e 's/\n/%0A/g' -e 's/\r/%0D/g' <<<${git_added_modified})
+          echo "::set-output name=git_added_modified::${git_added_modified}"
+          #echo "::set-output name=git_added_modified::"$(sed -e 's/%/%25/g' -e 's/,/%2C/g' -e 's/:/%3A/g' -e 's/\n/%0A/g' -e 's/\r/%0D/g' <<<${git_added_modified})
       - name: Run yarn 
         run: |
           yarn

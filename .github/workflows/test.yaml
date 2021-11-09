@@ -20,4 +20,5 @@ jobs:
           yarn
       - run: |
           export GH_ADD_MODIFIED='${{ steps.files.outputs.added_modified }}'
+          env
           yarn all

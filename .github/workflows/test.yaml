@@ -31,4 +31,5 @@ jobs:
           yarn
       - name: Run yarn all 
         run: |
+          env | grep GIT
           yarn all

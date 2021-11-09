@@ -16,9 +16,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "12"
-      - run: | 
-          export GIT_ADD_MODIFIED="'"$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -r 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')"'"
       - run: |
           yarn
       - run: |
+          export GIT_ADD_MODIFIED="'"$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -r 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')"'"
           yarn all

@@ -52,7 +52,7 @@ function constructMessage(): object {
   const githubAction = process.env.GITHUB_ACTION || ''
   const githubEventName = process.env.GITHUB_EVENT_NAME || ''
   const githubActor = process.env.GITHUB_ACTOR || ''
-  const githubAddModIn = process.env.GH_ADD_MODIFIED || '[".github/workflows/test.yaml","README.md","z-add.md","z-rename2.md"]'
+  const githubAddMod = process.env.GIT_ADD_MODIFIED || '[]'
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
   var ghArray = JSON.parse(githubAddModIn);
@@ -62,7 +62,7 @@ function constructMessage(): object {
     commit,
     ref,
     githubEventName,
-    ghArray,
+    githubAddMod,
     githubActor,
     githubAction,
     parameters,

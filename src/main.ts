@@ -55,7 +55,6 @@ function constructMessage(): object {
   const githubAddMod = process.env.GIT_ADD_MODIFIED || '[]'
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
-  var ghArray = JSON.parse(githubAddModIn);
 
   return {
     repository,

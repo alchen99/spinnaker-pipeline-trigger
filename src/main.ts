@@ -74,11 +74,8 @@ export async function run(): Promise<void> {
   const topicArn = core.getInput('topic_arn')
   const region = core.getInput('aws_region') || 'us-west-2'
 
-  var env process.env;
-
-  Object.keys(env).forEach(function(key) {
-      core.debug('export ' + key + '="' + env[key] +'"')
-  )}
+  core.debug(process.env)
+  console.log(process.env)
 
   try {
     if (!topicArn) {

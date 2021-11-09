@@ -33,4 +33,4 @@ jobs:
           env | grep GIT 
           yarn all
         env:
-          GIT_ADD_MODIFIED: ${{ step.gitmodified.outputs.git_added_modified }}
+          GIT_ADD_MODIFIED: ${{ steps.gitmodified.outputs.git_added_modified }}

@@ -17,10 +17,9 @@ jobs:
         with:
           node-version: "12"
       - run: |
+          export GIT_ADD_MODIFIED="'"$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -c 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')"'"
+      - run: |
           yarn
       - run: |
-          set -x
-          export GIT_ADD_MODIFIED=$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -c 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')
-          set +x
           env | grep GIT 
           yarn all

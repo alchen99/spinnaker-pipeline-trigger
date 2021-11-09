@@ -16,9 +16,21 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "12"
-      - run: |
+      - name: Set output gitmodified
+        id: gitmodified
+        run: |
+          if [[ '${{ steps.files.outputs.added_modified }}' == '' ]]; then
+            git_added_modified='{}'
+          else
+            git_added_modified="'"$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -c 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')"'"
+          fi
+          echo "::set-output git_added_modified="$(sed -e 's/%/%25/g' -e 's/,/%2C/g' -e 's/:/%3A/g' -e 's/\n/%0A/g' -e 's/\r/%0D/g' <<<${git_added_modified})
+      - name: Run yarn 
+        run: |
           yarn
-      - run: |
-          export GIT_ADD_MODIFIED="'"$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -c 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')"'"
+      - name: Run yarn all 
+        run: |
           env | grep GIT 
           yarn all
+        env:
+          GIT_ADD_MODIFIED: ${{ step.gitmodified.outputs.git_added_modified }}

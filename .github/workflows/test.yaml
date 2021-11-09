@@ -21,4 +21,5 @@ jobs:
       - run: |
           yarn
       - run: |
+          env
           yarn all

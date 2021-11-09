@@ -51,19 +51,18 @@ function constructMessage(): object {
   const ref = process.env.GITHUB_REF || ''
   const githubAction = process.env.GITHUB_ACTION || ''
   const githubEventName = process.env.GITHUB_EVENT_NAME || ''
-  const githubEventPath = process.env.GITHUB_EVENT_PATH || ''
-  const githubPayload = github.context || {}
   const githubActor = process.env.GITHUB_ACTOR || ''
+  const githubAddModIn = process.env.GH_ADD_MODIFIED || '[".github/workflows/test.yaml","README.md","z-add.md","z-rename2.md"]'
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
+  var ghArray = JSON.parse(githubAddModIn);
 
   return {
     repository,
     commit,
     ref,
     githubEventName,
-    githubEventPath,
-    githubPayload,
+    ghArray,
     githubActor,
     githubAction,
     parameters,

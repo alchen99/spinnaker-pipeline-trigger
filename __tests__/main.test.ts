@@ -36,9 +36,6 @@ describe('Publish', () => {
     process.env.GITHUB_SHA = 'long-sha'
     process.env.GITHUB_REF = 'main'
     SNSClient.prototype.send = mockedSend
-
-    // @ts-ignore
-    github.context = {}
   })
 
   test('Run with no options', async () => {
@@ -47,7 +44,7 @@ describe('Publish', () => {
 
     const input = {
       Message:
-        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubEventPath":"","githubPayload":{},"githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
+        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
       TopicArn: 'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
     }
 

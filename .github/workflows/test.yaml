@@ -16,9 +16,10 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "12"
+      - run: | 
+          export GH_ADD_MODIFIED='${{ steps.files.outputs.added_modified }}'
+          sudo apt-get install jo
       - run: |
           yarn
       - run: |
-          export GH_ADD_MODIFIED='${{ steps.files.outputs.added_modified }}'
-          env
           yarn all

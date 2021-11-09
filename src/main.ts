@@ -74,9 +74,6 @@ export async function run(): Promise<void> {
   const topicArn = core.getInput('topic_arn')
   const region = core.getInput('aws_region') || 'us-west-2'
 
-  core.debug(process.env)
-  console.log(process.env)
-
   try {
     if (!topicArn) {
       throw new Error('Topic ARN is required.')

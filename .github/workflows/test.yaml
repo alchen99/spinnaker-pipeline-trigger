@@ -30,9 +30,6 @@ jobs:
           yarn
       - name: Run yarn all 
         run: |
-          env | grep GIT
-          npm install -g @bahmutov/print-env
-          print-env GIT
           yarn all
         env:
           GIT_ADD_MODIFIED: ${{ steps.gitmodified.outputs.git_added_modified }}

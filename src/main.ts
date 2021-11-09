@@ -55,6 +55,8 @@ function constructMessage(): object {
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
 
+  core.debug(process.env)
+
   return {
     repository,
     commit,

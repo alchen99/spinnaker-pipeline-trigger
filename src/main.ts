@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import * as core from '@actions/core'
-import * as github from '@actions/github'
 import * as yaml from 'js-yaml'
 import {
   SNSClient,

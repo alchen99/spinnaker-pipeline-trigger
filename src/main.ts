@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 import * as core from '@actions/core'
-import * as github from '@actions/github'
 import * as yaml from 'js-yaml'
 import {
   SNSClient,
@@ -51,19 +50,18 @@ function constructMessage(): object {
   const ref = process.env.GITHUB_REF || ''
   const githubAction = process.env.GITHUB_ACTION || ''
   const githubEventName = process.env.GITHUB_EVENT_NAME || ''
-  const githubEventPath = process.env.GITHUB_EVENT_PATH || ''
-  const githubPayload = github.context || {}
   const githubActor = process.env.GITHUB_ACTOR || ''
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
+  const githubAddModIn = core.getInput('git_add_modified') || '{}'
+  const githubAddMod = JSON.parse(githubAddModIn)
 
   return {
     repository,
     commit,
     ref,
     githubEventName,
-    githubEventPath,
-    githubPayload,
+    githubAddMod,
     githubActor,
     githubAction,
     parameters,
@@ -82,7 +80,9 @@ export async function run(): Promise<void> {
       throw new Error('Topic ARN is required.')
     }
     const message = constructMessage()
+    core.debug('---START pubsub message')
     core.debug(JSON.stringify(message))
+    core.debug('---END pubsub message')
     await publish(message, topicArn, region)
   } catch (error) {
     core.warning('Failed to publish message.')

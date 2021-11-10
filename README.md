@@ -81,8 +81,7 @@ Sample message format based on the default parameters being sent:
     "commit": "{{ commit }}",
     "ref": "{{ ref }}",
     "githubEventName": "{{ githubEventName }}",
-    "githubEventPath": "{{ githubEventPath }}",
-    "githubPayload": "{{ githubPayload }}",
+    "githubAddMod": "{{ githubAddMod }}",
     "githubActor": "{{ githubActor }}",
     "githubAction": "{{ githubAction }}"
   }
@@ -98,4 +97,3 @@ The scripts and documentation in this project are released under the [Apache 2 L
 - Run `yarn all` locally before committing.
 - Coverage limits are set at 90%.
 - Follow semantic-release commit formatting.
-

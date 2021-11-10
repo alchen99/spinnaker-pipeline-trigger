@@ -51,7 +51,7 @@ function constructMessage(): object {
   const githubAction = process.env.GITHUB_ACTION || ''
   const githubEventName = process.env.GITHUB_EVENT_NAME || ''
   const githubActor = process.env.GITHUB_ACTOR || ''
-  const githubAddMod = process.env.GIT_ADD_MODIFIED || {}
+  const githubAddMod = JSON.parse(JSON.stringify(process.env.GIT_ADD_MODIFIED))
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
 
@@ -72,9 +72,9 @@ export async function run(): Promise<void> {
   core.info('Spinnaker Pipeline Trigger :shipit:')
 
   const z = JSON.stringify(process.env.GIT_ADD_MODIFIED)
-  core.warning("Printing env GIT_ADD_MODIFIED")
+  core.warning('--- START Printing env GIT_ADD_MODIFIED')
   core.warning(z)
-  core.warning("END Printing env GIT_ADD_MODIFIED")
+  core.warning('--- END Printing env GIT_ADD_MODIFIED')
 
   const topicArn = core.getInput('topic_arn')
   const region = core.getInput('aws_region') || 'us-west-2'

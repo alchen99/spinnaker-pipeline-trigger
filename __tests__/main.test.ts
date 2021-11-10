@@ -30,7 +30,8 @@ describe('Publish', () => {
   beforeEach(() => {
     jest.resetModules()
     process.env = {}
-    process.env.INPUT_TOPIC_ARN = 'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
+    process.env.INPUT_TOPIC_ARN =
+      'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
     process.env.GITHUB_REPOSITORY = 'Org/actions-test-trigger'
     process.env.GITHUB_SHA = 'long-sha'
     process.env.GITHUB_REF = 'main'

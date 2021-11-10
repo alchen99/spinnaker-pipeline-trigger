@@ -101,9 +101,10 @@ function constructMessage() {
     const githubAction = process.env.GITHUB_ACTION || '';
     const githubEventName = process.env.GITHUB_EVENT_NAME || '';
     const githubActor = process.env.GITHUB_ACTOR || '';
-    const githubAddMod = JSON.parse(JSON.stringify(process.env.GIT_ADD_MODIFIED));
     const parameters = yaml.load(core.getInput('parameters')) || {};
     const messageAttributes = core.getInput('message_attributes') || {};
+    const githubAddModIn = process.env.GIT_ADD_MODIFIED || '{}';
+    const githubAddMod = JSON.parse(githubAddModIn);
     return {
         repository,
         commit,

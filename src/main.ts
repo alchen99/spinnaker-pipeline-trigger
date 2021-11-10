@@ -51,9 +51,10 @@ function constructMessage(): object {
   const githubAction = process.env.GITHUB_ACTION || ''
   const githubEventName = process.env.GITHUB_EVENT_NAME || ''
   const githubActor = process.env.GITHUB_ACTOR || ''
-  const githubAddMod = JSON.parse(JSON.stringify(process.env.GIT_ADD_MODIFIED))
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
+  const githubAddModIn = process.env.GIT_ADD_MODIFIED || '{}'
+  const githubAddMod = JSON.parse(githubAddModIn)
 
   return {
     repository,
@@ -76,9 +77,9 @@ export async function run(): Promise<void> {
 
   try {
     const message = constructMessage()
-    core.warning('---START pubsub message')
-    core.warning(JSON.stringify(message))
-    core.warning('---END pubsub message')
+    core.debug('---START pubsub message')
+    core.debug(JSON.stringify(message))
+    core.debug('---END pubsub message')
     if (!topicArn) {
       throw new Error('Topic ARN is required.')
     }

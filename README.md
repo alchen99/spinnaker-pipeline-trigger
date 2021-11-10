@@ -36,7 +36,7 @@ The action sends the following information in the payload:
 - githubEventName: The name of the webhook event that triggered the workflow.
 - githubActor: The name of the person or app that initiated the workflow. For example, octocat.
 - githubAction: Always set to true when GitHub Actions is running the workflow. You can use this variable to differentiate when tests are being run locally or by GitHub Actions.
-- githubAddMod: JSON object of Git files added or modified
+- githubAddMod: JSON object of Git files added or modified with key being the file path relative to the repository and value being the API URL to the file
 
 ### Additional Parameters
 
@@ -48,7 +48,7 @@ steps:
     uses: alchen99/spinnaker-pipeline-trigger@v1
     with:
       topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
-      git_add_modified: {"README.md","https://api.github.com/repos/octocat/test-trigger/contents/README.md"}
+      git_add_modified: {"README.md":"https://api.github.com/repos/octocat/test-trigger/contents/README.md",".gitignore":"https://api.github.com/repos/octocat/test-trigger/contents/.gitignore"}
       parameters: |
         parameter1: value1
 ```

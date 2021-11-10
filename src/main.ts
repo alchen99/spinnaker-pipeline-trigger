@@ -53,7 +53,7 @@ function constructMessage(): object {
   const githubActor = process.env.GITHUB_ACTOR || ''
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
-  const githubAddModIn = process.env.GIT_ADD_MODIFIED || '{}'
+  const githubAddModIn = core.getInput('git_add_modified') || '{}'
   const githubAddMod = JSON.parse(githubAddModIn)
 
   return {
@@ -76,13 +76,13 @@ export async function run(): Promise<void> {
   const region = core.getInput('aws_region') || 'us-west-2'
 
   try {
+    if (!topicArn) {
+      throw new Error('Topic ARN is required.')
+    }
     const message = constructMessage()
     core.debug('---START pubsub message')
     core.debug(JSON.stringify(message))
     core.debug('---END pubsub message')
-    if (!topicArn) {
-      throw new Error('Topic ARN is required.')
-    }
     await publish(message, topicArn, region)
   } catch (error) {
     core.warning('Failed to publish message.')

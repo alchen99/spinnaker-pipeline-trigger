@@ -103,7 +103,7 @@ function constructMessage() {
     const githubActor = process.env.GITHUB_ACTOR || '';
     const parameters = yaml.load(core.getInput('parameters')) || {};
     const messageAttributes = core.getInput('message_attributes') || {};
-    const githubAddModIn = process.env.GIT_ADD_MODIFIED || '{}';
+    const githubAddModIn = core.getInput('git_add_modified') || '{}';
     const githubAddMod = JSON.parse(githubAddModIn);
     return {
         repository,
@@ -123,13 +123,13 @@ function run() {
         const topicArn = core.getInput('topic_arn');
         const region = core.getInput('aws_region') || 'us-west-2';
         try {
+            if (!topicArn) {
+                throw new Error('Topic ARN is required.');
+            }
             const message = constructMessage();
             core.debug('---START pubsub message');
             core.debug(JSON.stringify(message));
             core.debug('---END pubsub message');
-            if (!topicArn) {
-                throw new Error('Topic ARN is required.');
-            }
             yield publish(message, topicArn, region);
         }
         catch (error) {

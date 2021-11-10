@@ -76,6 +76,7 @@ describe('Publish', () => {
     expect(PublishCommand).toBeCalledWith(input)
     expect(mockedSend).toBeCalledTimes(1)
   })
+
   test('With Parameters and Message Attributes', async () => {
     // Arrange
     const region = 'us-west-2'
@@ -85,6 +86,27 @@ describe('Publish', () => {
     const input = {
       Message:
         '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubAddMod":{},"githubActor":"","githubAction":"","parameters":{"parameter1":"value1","parameter2":"value2"},"messageAttributes":"12345"}',
+      TopicArn: 'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
+    }
+
+    // Act
+    await run()
+
+    // Assert
+    expect(SNSClient).toBeCalledWith({ region })
+    expect(PublishCommand).toBeCalledWith(input)
+    expect(mockedSend).toBeCalledTimes(1)
+  })
+
+  test('With Git Add Modified Attribute', async () => {
+    // Arrange
+    const region = 'us-west-2'
+    process.env.INPUT_GIT_ADD_MODIFIED =
+      '{".github/workflows/test.yaml":"https://api.github.com/repos/Org/actions-test-trigger/contents/.github/workflows/test.yaml","README.md":"https://api.github.com/repos/Org/actions-test-trigger/contents/README.md"}'
+
+    const input = {
+      Message:
+        '{"repository":"Org/actions-test-trigger","commit":"long-sha","ref":"main","githubEventName":"","githubAddMod":{".github/workflows/test.yaml":"https://api.github.com/repos/Org/actions-test-trigger/contents/.github/workflows/test.yaml","README.md":"https://api.github.com/repos/Org/actions-test-trigger/contents/README.md"},"githubActor":"","githubAction":"","parameters":{},"messageAttributes":{}}',
       TopicArn: 'arn:aws:sns:us-west-2:123456789123:spinnaker-github-actions'
     }
 

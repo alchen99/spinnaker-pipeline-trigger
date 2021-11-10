@@ -75,13 +75,13 @@ export async function run(): Promise<void> {
   const region = core.getInput('aws_region') || 'us-west-2'
 
   try {
+    const message = constructMessage()
+    core.warning('---START pubsub message')
+    core.warning(JSON.stringify(message))
+    core.warning('---END pubsub message')
     if (!topicArn) {
       throw new Error('Topic ARN is required.')
     }
-    const message = constructMessage()
-    core.debug('---START pubsub message')
-    core.debug(JSON.stringify(message))
-    core.debug('---END pubsub message')
     await publish(message, topicArn, region)
   } catch (error) {
     core.warning('Failed to publish message.')

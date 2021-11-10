@@ -122,13 +122,13 @@ function run() {
         const topicArn = core.getInput('topic_arn');
         const region = core.getInput('aws_region') || 'us-west-2';
         try {
+            const message = constructMessage();
+            core.debug('---START pubsub message');
+            core.debug(JSON.stringify(message));
+            core.debug('---END pubsub message');
             if (!topicArn) {
                 throw new Error('Topic ARN is required.');
             }
-            const message = constructMessage();
-            core.debug("---START pubsub message");
-            core.debug(JSON.stringify(message));
-            core.debug("---END pubsub message");
             yield publish(message, topicArn, region);
         }
         catch (error) {

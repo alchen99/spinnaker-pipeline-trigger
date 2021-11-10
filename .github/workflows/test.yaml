@@ -32,6 +32,7 @@ jobs:
           yarn
       - name: Run yarn all 
         run: |
+          env | grep GIT
           yarn all
         env:
-          GIT_ADD_MODIFIED: '${{ steps.gitmodified.outputs.git_added_modified }}'
+          GIT_ADD_MODIFIED:${{ steps.gitmodified.outputs.git_added_modified }}

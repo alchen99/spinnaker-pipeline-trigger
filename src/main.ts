@@ -71,11 +71,6 @@ function constructMessage(): object {
 export async function run(): Promise<void> {
   core.info('Spinnaker Pipeline Trigger :shipit:')
 
-  const z = JSON.stringify(process.env.GIT_ADD_MODIFIED)
-  core.warning('--- START Printing env GIT_ADD_MODIFIED')
-  core.warning(z)
-  core.warning('--- END Printing env GIT_ADD_MODIFIED')
-
   const topicArn = core.getInput('topic_arn')
   const region = core.getInput('aws_region') || 'us-west-2'
 
@@ -84,7 +79,9 @@ export async function run(): Promise<void> {
       throw new Error('Topic ARN is required.')
     }
     const message = constructMessage()
+    core.debug("---START pubsub message")
     core.debug(JSON.stringify(message))
+    core.debug("---END pubsub message")
     await publish(message, topicArn, region)
   } catch (error) {
     core.warning('Failed to publish message.')

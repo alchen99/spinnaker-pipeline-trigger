@@ -79,9 +79,9 @@ export async function run(): Promise<void> {
       throw new Error('Topic ARN is required.')
     }
     const message = constructMessage()
-    core.debug("---START pubsub message")
+    core.debug('---START pubsub message')
     core.debug(JSON.stringify(message))
-    core.debug("---END pubsub message")
+    core.debug('---END pubsub message')
     await publish(message, topicArn, region)
   } catch (error) {
     core.warning('Failed to publish message.')

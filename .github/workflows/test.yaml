@@ -32,7 +32,6 @@ jobs:
           yarn
       - name: Run yarn all 
         run: |
+          export GIT_ADD_MODIFIED=$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -c 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')
           env | grep GIT
           yarn all
-        env:
-          GIT_ADD_MODIFIED: ${{ steps.gitmodified.outputs.git_added_modified }}

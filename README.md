@@ -14,7 +14,7 @@ Include `alchen99/spinnaker-pipeline-trigger` as final step in workflow to trigg
 ```yaml
 steps:
   - name: Spinnaker
-    uses: alchen99/spinnaker-pipeline-trigger@v1.3.2
+    uses: alchen99/spinnaker-pipeline-trigger@v2.0.0
     with:
       topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
 ```

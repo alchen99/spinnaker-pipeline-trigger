@@ -74,6 +74,7 @@ export async function run(): Promise<void> {
   core.info('Spinnaker Pipeline Trigger :shipit:')
 
   const z = JSON.stringify(process.env.GIT_ADD_MODIFIED)
+  core.debug("Printing env GIT_ADD_MODIFIED")
   core.debug(z)
 
   const topicArn = core.getInput('topic_arn')

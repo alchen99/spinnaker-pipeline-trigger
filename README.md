@@ -14,7 +14,7 @@ Include `alchen99/spinnaker-pipeline-trigger` as final step in workflow to trigg
 ```yaml
 steps:
   - name: Spinnaker
-    uses: alchen99/spinnaker-pipeline-trigger@v2.0.0
+    uses: alchen99/spinnaker-pipeline-trigger@v2.0.1
     with:
       topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
 ```
@@ -36,6 +36,7 @@ The action sends the following information in the payload:
 - githubEventName: The name of the webhook event that triggered the workflow.
 - githubActor: The name of the person or app that initiated the workflow. For example, octocat.
 - githubAction: Always set to true when GitHub Actions is running the workflow. You can use this variable to differentiate when tests are being run locally or by GitHub Actions.
+- githubAddMod: JSON object of Git files added or modified
 
 ### Additional Parameters
 
@@ -47,6 +48,7 @@ steps:
     uses: alchen99/spinnaker-pipeline-trigger@v1
     with:
       topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
+      git_add_modified: {"README.md","https://api.github.com/repos/octocat/test-trigger/contents/README.md"}
       parameters: |
         parameter1: value1
 ```

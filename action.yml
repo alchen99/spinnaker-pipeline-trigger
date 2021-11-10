@@ -15,6 +15,9 @@ inputs:
     description: AWS Region
     required: false
     default: us-west-2
+  git_add_modified:
+    description: JSON Object of Git added or modified files
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"

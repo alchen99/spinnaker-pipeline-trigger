@@ -19,7 +19,7 @@ jobs:
           if [[ '${{ steps.files.outputs.added_modified }}' == '' ]]; then
             git_added_modified='{}'
           else
-            git_added_modified="'"$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -c 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')"'"
+            git_added_modified=$(jq --arg GHPATH "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/contents/" -c 'map({ (.): ($GHPATH + .)}) | add' <<<'${{ steps.files.outputs.added_modified }}')
           fi
           echo "::set-output name=git_added_modified::${git_added_modified}"
       - uses: actions/setup-node@v2

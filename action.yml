@@ -18,6 +18,12 @@ inputs:
   git_add_modified:
     description: JSON Object of Git added or modified files
     required: false
+  docker_image:
+    description: Full Docker image path
+    required: false
+  helm_chart:
+    description: Path to Helm chart
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"

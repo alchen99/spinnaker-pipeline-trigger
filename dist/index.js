@@ -103,6 +103,10 @@ function constructMessage() {
     const githubActor = process.env.GITHUB_ACTOR || '';
     const parameters = yaml.load(core.getInput('parameters')) || {};
     const messageAttributes = core.getInput('message_attributes') || {};
+    const dockerIn = core.getInput('docker_image') || '{}';
+    const docker = JSON.parse(dockerIn);
+    const helmIn = core.getInput('helm_chart') || '{}';
+    const helm = JSON.parse(helmIn);
     const githubAddModIn = core.getInput('git_add_modified') || '{}';
     const githubAddMod = JSON.parse(githubAddModIn);
     return {
@@ -113,6 +117,8 @@ function constructMessage() {
         githubAddMod,
         githubActor,
         githubAction,
+        docker,
+        helm,
         parameters,
         messageAttributes
     };

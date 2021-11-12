@@ -49,7 +49,7 @@ steps:
     uses: alchen99/spinnaker-pipeline-trigger@v2.1.0
     with:
       topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
-      docker_images: {"index.docker.io/hashicorp/http-echo:latest", "index.docker.io/library/nginx:latest"}
+      docker_images: ["index.docker.io/hashicorp/http-echo:latest", "index.docker.io/library/nginx:latest"]
       git_add_modified: {"README.md":"https://api.github.com/repos/octocat/test-trigger/contents/README.md",".gitignore":"https://api.github.com/repos/octocat/test-trigger/contents/.gitignore"}
       parameters: |
         parameter1: value1

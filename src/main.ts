@@ -53,10 +53,8 @@ function constructMessage(): object {
   const githubActor = process.env.GITHUB_ACTOR || ''
   const parameters = yaml.load(core.getInput('parameters')) || {}
   const messageAttributes = core.getInput('message_attributes') || {}
-  const dockerIn = core.getInput('docker_image') || '{}'
+  const dockerIn = core.getInput('docker_images') || '[]'
   const docker = JSON.parse(dockerIn)
-  const helmIn = core.getInput('helm_chart') || '{}'
-  const helm = JSON.parse(helmIn)
   const githubAddModIn = core.getInput('git_add_modified') || '{}'
   const githubAddMod = JSON.parse(githubAddModIn)
 
@@ -69,7 +67,6 @@ function constructMessage(): object {
     githubActor,
     githubAction,
     docker,
-    helm,
     parameters,
     messageAttributes
   }

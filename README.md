@@ -14,7 +14,7 @@ Include `alchen99/spinnaker-pipeline-trigger` as final step in workflow to trigg
 ```yaml
 steps:
   - name: Spinnaker
-    uses: alchen99/spinnaker-pipeline-trigger@v2.0.1
+    uses: alchen99/spinnaker-pipeline-trigger@v2.1.0
     with:
       topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
 ```
@@ -37,6 +37,7 @@ The action sends the following information in the payload:
 - githubActor: The name of the person or app that initiated the workflow. For example, octocat.
 - githubAction: Always set to true when GitHub Actions is running the workflow. You can use this variable to differentiate when tests are being run locally or by GitHub Actions.
 - githubAddMod: JSON object of Git files added or modified with key being the file path relative to the repository and value being the API URL to the file
+- docker: JSON list of Docker registry URLs
 
 ### Additional Parameters
 
@@ -45,9 +46,10 @@ To pass additional parameters to the pipeline execution context, include the `pa
 ```yaml
 steps:
   - name: Spinnaker
-    uses: alchen99/spinnaker-pipeline-trigger@v1
+    uses: alchen99/spinnaker-pipeline-trigger@v2.1.0
     with:
       topic_arn: ${{ secrets.SPINNAKER_TOPIC_ARN }}
+      docker_images: {"index.docker.io/hashicorp/http-echo:latest", "index.docker.io/library/nginx:latest"}
       git_add_modified: {"README.md":"https://api.github.com/repos/octocat/test-trigger/contents/README.md",".gitignore":"https://api.github.com/repos/octocat/test-trigger/contents/.gitignore"}
       parameters: |
         parameter1: value1
@@ -85,7 +87,8 @@ Sample message format based on the default parameters being sent:
     "githubEventName": "{{ githubEventName }}",
     "githubAddMod": "{{ githubAddMod }}",
     "githubActor": "{{ githubActor }}",
-    "githubAction": "{{ githubAction }}"
+    "githubAction": "{{ githubAction }}",
+    "docker": "{{ docker }}",
   }
 ]
 ```

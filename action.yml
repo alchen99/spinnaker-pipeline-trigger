@@ -18,6 +18,9 @@ inputs:
   git_add_modified:
     description: JSON Object of Git added or modified files
     required: false
+  docker_images:
+    description: JSON Object with full path of Docker images
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"

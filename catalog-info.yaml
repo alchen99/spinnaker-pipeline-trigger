@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: spinnaker-pipeline-trigger
+  description: Trigger Spinnaker pipelines via GitHub Actions
+  annotations:
+    github.com/project-slug: 'alchen99/spinnaker-pipeline-trigger'
+spec:
+  type: service
+  lifecycle: production
+  owner: user:alchen99

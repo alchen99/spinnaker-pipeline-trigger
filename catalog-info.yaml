@@ -4,7 +4,7 @@ metadata:
   name: spinnaker-pipeline-trigger
   description: Trigger Spinnaker pipelines via GitHub Actions
   annotations:
-    backstage.io/code-coverage: enabled
+    backstage.io/code-coverage: scm-only
     github.com/project-slug: 'alchen99/spinnaker-pipeline-trigger'
 spec:
   type: service

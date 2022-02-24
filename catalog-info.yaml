@@ -6,7 +6,7 @@ metadata:
   annotations:
     github.com/project-slug: 'alchen99/spinnaker-pipeline-trigger'
     backstage.io/kubernetes-id: minikube
-    backstage.io/kubernetes-label-selector: 'app=spinnaker-pipeline,component=backend'
+    backstage.io/kubernetes-label-selector: 'app=spinnaker-pipeline-trigger,component=backend'
 spec:
   type: service
   lifecycle: production

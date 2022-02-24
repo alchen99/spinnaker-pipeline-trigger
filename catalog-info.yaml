@@ -5,7 +5,7 @@ metadata:
   description: Trigger Spinnaker pipelines via GitHub Actions
   annotations:
     github.com/project-slug: 'alchen99/spinnaker-pipeline-trigger'
-    backstage.io/kubernetes-id: minikube
+    backstage.io/kubernetes-id: spinnaker-pipeline-trigger
     backstage.io/kubernetes-label-selector: 'app=spinnaker-pipeline-trigger,component=backend'
 spec:
   type: service

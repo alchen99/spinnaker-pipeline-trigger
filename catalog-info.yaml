@@ -11,3 +11,5 @@ spec:
   type: service
   lifecycle: production
   owner: user:alchen99
+  system: spinnaker
+  providesApis: spinnaker

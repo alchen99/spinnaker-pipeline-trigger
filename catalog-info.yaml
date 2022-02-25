@@ -12,4 +12,4 @@ spec:
   lifecycle: production
   owner: user:alchen99
   system: spinnaker
-  providesApis: spinnaker
+  providesApis: [spinnaker]

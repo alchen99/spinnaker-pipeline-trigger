@@ -3,10 +3,16 @@ kind: Component
 metadata:
   name: spinnaker-pipeline-trigger
   description: Trigger Spinnaker pipelines via GitHub Actions
+  links:
+    - title: Spinnaker Website
+      url: https://spinnaker.io
+    - title: Spinnaker Docs
+      url: https://spinnaker.io/docs/
+    - title: Spinnaker Slack
+      url: https://spinnakerteam.slack.com
+
   annotations:
     github.com/project-slug: 'alchen99/spinnaker-pipeline-trigger'
-    backstage.io/kubernetes-id: spinnaker-pipeline-trigger
-    backstage.io/kubernetes-label-selector: 'app=spinnaker-pipeline-trigger,component=backend'
 spec:
   type: service
   lifecycle: production

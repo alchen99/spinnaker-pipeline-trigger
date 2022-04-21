@@ -3,6 +3,7 @@ kind: Component
 metadata:
   name: spinnaker-pipeline-trigger
   description: Trigger Spinnaker pipelines via GitHub Actions
+  tenant:  
   links:
     - title: Spinnaker Website
       url: https://spinnaker.io
@@ -17,5 +18,11 @@ spec:
   type: service
   lifecycle: production
   owner: user:alchen99
+  uri: https://localhost:7001
+  priority: 3
+  sla: 24x5
+  isInternal: true
+  isSaas: false
+  requiresLicense: false
   system: spinnaker
   providesApis: [spinnaker]

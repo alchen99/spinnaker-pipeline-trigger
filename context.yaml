@@ -25,4 +25,5 @@ spec:
   isSaas: false
   requiresLicense: false
   system: spinnaker
+  product: [spinnaker]
   providesApis: [spinnaker]

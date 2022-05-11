@@ -1,5 +1,5 @@
 apiVersion: opencontext.com/v1alpha1
-kind: Context
+kind: Component
 metadata:
   name: spinnaker-pipeline-trigger
   description: Trigger Spinnaker pipelines via GitHub Actions

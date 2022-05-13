@@ -17,7 +17,7 @@ metadata:
 spec:
   type: service
   lifecycle: production
-  owner: user:alchen99
+  owner: [user:alchen99]
   uri: https://localhost:7001
   priority: 3
   sla: 24x5

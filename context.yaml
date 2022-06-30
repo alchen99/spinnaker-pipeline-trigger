@@ -1,9 +1,9 @@
 apiVersion: opencontext.com/v1alpha1
-kind: Component
+kind: CodeComponent
 metadata:
   name: spinnaker-pipeline-trigger
   description: Trigger Spinnaker pipelines via GitHub Actions
-  tenant:  
+  title: Spinnaker Pipeline Trigger
   links:
     - title: Spinnaker Website
       url: https://spinnaker.io
@@ -15,15 +15,13 @@ metadata:
   annotations:
     github.com/project-slug: 'alchen99/spinnaker-pipeline-trigger'
 spec:
-  type: service
+  type: github-actions
   lifecycle: production
-  owner: [user:alchen99]
+  owner: [user:alice]
   uri: https://localhost:7001
   priority: 3
   sla: 24x5
   isInternal: true
   isSaas: false
   requiresLicense: false
-  system: spinnaker
-  product: [spinnaker]
-  providesApis: [spinnaker]
+  isPageable: false

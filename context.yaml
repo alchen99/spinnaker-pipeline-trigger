@@ -15,7 +15,8 @@ metadata:
   annotations:
     github.com/project-slug: 'alchen99/spinnaker-pipeline-trigger'
 spec:
-  type: github-actions
+  type: other
+  otherType: github-actions
   lifecycle: production
   owner: [user:alice]
   uri: https://localhost:7001

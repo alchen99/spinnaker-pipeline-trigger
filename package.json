@@ -36,7 +36,7 @@
         "@types/js-yaml": "^4.0.1",
         "@types/node": "16.11.1",
         "js-yaml": "^4.1.0",
-        "minimist": "^1.2.5"
+        "minimist": "^1.2.8"
     },
     "devDependencies": {
         "@types/jest": "27.0.2",
